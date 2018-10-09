@@ -23,3 +23,6 @@
 hs_err_pid*
 
 ./web_tutorial/target/
+./web_tutorial/.classpath
+./web_tutorial/.project
+./web_tutorial/.settings/
