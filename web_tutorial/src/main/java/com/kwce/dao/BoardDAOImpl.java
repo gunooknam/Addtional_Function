@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -33,5 +34,10 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return session.selectList(namespace+".listAll");
+	}
+	@Override
+	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace + ".listSearch", cri);
 	}
 }

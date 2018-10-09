@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.SearchCriteria;
 import com.kwce.service.BoardService;
 
 @Controller
@@ -21,13 +22,13 @@ public class BoardController {
 	@Autowired 
 	private BoardService service;
 	
-	@RequestMapping(value= "/list",method = RequestMethod.GET)
+/*	@RequestMapping(value= "/list",method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		logger.info("list page get....");
 		model.addAttribute("list",service.listAll());
 		return "board/list";
 	}
-	
+	*/
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerGET(BoardVO board, Model model)throws Exception {
 		logger.info("register page get......");	
@@ -74,6 +75,14 @@ public class BoardController {
 		logger.info("remove page post......");	
 		rttr.addFlashAttribute("msg","SUCCESS");
 		return "redirect:/board/list"; 
+	}
+	
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	public String listSearch(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception {
+		logger.info("search page get.....");
+		logger.info(cri.toString());
+		model.addAttribute("list",service.listSearch(cri));
+		return "board/list";
 	}
 	
 }

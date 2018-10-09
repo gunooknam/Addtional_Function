@@ -62,35 +62,21 @@
 							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
 							Title OR Content OR Writer</option>
 					</select> <input type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword }'>
-					<button id='searchBtn'>Search</button>	
+						value='${cri.keyword }'>	
+					<button id='searchBtn'>Search</button>
+					
 			</div> <!--  end panel-body -->
 		</div><!-- end panel -->
 	</div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 
 <script>
-
-	$(document).ready(
-			function() {
-			 	var result = '${msg}';
-		 		var Query="?";
-				if(result == 'SUCCESS'){
-				   alert("처리가 완료되었습니다.");
-				}
-				
-				$('#searchBtn').on(
-						"click",
-						function(event) {
-							self.location = "list"
-									+ Query
-									+ "&searchType="
-									+ $("select option:selected").val()
-									+ "&keyword=" + $('#keywordInput').val();
-				});
-	
-	});
-	
+ 	var result = '${msg}';
+ 		
+	if(result == 'SUCCESS'){
+	   alert("처리가 완료되었습니다.");
+	}
+ 		
  	</script>
 <%@include file="../include/footer.jsp"%>
 

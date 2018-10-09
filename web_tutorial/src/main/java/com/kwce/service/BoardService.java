@@ -3,6 +3,7 @@ package com.kwce.service;
 import java.util.List;
 
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.SearchCriteria;
 
 public interface BoardService {
 	
@@ -14,6 +15,8 @@ public interface BoardService {
 	
 	public void remove(Integer bno)throws Exception;
 	
-	public List<BoardVO>listAll()throws Exception;
-
+	public List<BoardVO>listAll() throws Exception;
+	
+	public List<BoardVO>listSearch(SearchCriteria cri)throws Exception;
+	
 }
