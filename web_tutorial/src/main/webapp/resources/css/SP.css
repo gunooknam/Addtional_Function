@@ -51,13 +51,15 @@ margin: auto;
 .mailbox-attachment-icon.has-img {
   padding: 0;
 }
+
 .mailbox-attachment-icon.has-img > img {
   max-width: 100%;
   height: auto;
 }
 
 
- ul .mailbox-attachments .clearfix .uploadedList{
+ .uploadedList {
+ 	list-style:none;
  	padding-left:0px;
  }
 

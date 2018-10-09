@@ -59,7 +59,7 @@
 			<hr>
 		</div>
 	  <div class="form-group"> <!-- 첨부파일 다운로드 -->
-		<ul class="mailbox-attachments clearfix uploadedList"></ul>
+		<ul class="mailbox-attachments clearfix uploadedList" style="padding-left:0px;"></ul>
       </div>
       <div class="form-group">
        <label for="exampleInputEmail1">File DROP Here</label>

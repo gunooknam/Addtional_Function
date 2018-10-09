@@ -47,13 +47,11 @@
        <div class="form-group"> <!-- 첨부파일 다운로드 -->
     
          
-        
         <hr>
         
-       		 <ul class="mailbox-attachments clearfix uploadedList">
+       	 <ul class="mailbox-attachments clearfix uploadedList" style="padding-left:0px;">
 		</ul>
         
-         
 	  <script id="templateAttach" type="text/x-handlebars-template">
 		<li data-src='{{fullName}}'>
   			<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" onerror="this.style.display='none'"></span>

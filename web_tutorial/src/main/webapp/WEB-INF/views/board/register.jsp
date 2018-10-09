@@ -54,7 +54,7 @@
        
       <div class="form-group"> <!-- 첨부파일 다운로드 -->
        
-       	<ul class="mailbox-attachments clearfix uploadedList">
+       	<ul class="mailbox-attachments clearfix uploadedList" style="padding-left:0px;">
 			</ul>
       </div>
           
