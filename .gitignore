@@ -23,4 +23,10 @@
 hs_err_pid*
 
 
-./web_tutorial/target/
+#spring related 
+
+**/target/
+.classpath
+.project
+**/.settings/
+.springBeans
