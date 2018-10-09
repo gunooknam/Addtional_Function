@@ -49,7 +49,7 @@ public class BoardDAOTest {
 		dao.delete(1);
 	}
 	
-	@Before
+	@Before @Ignore
 	public void testTenCreate() throws Exception {
 		BoardVO board = new BoardVO();
 		for(int i=0; i<10; i++) {
@@ -60,7 +60,7 @@ public class BoardDAOTest {
 		}
 	}
 	
-	@Test 
+	@Test  @Ignore
 	public void testListAll() throws Exception{
 		List<BoardVO> list = dao.listAll();
 		for (BoardVO boardVO : list) { //향상된 for문
@@ -68,5 +68,9 @@ public class BoardDAOTest {
 		}
 	}
 	
+	@Test  
+	public void getAttachTest() throws Exception{
+		System.out.println(dao.getAttach(6));
+	}
 	
 }

@@ -3,6 +3,7 @@ package com.kwce.service;
 import java.util.List;
 
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.FileVO;
 
 public interface BoardService {
 	
@@ -15,5 +16,7 @@ public interface BoardService {
 	public void remove(Integer bno)throws Exception;
 	
 	public List<BoardVO>listAll()throws Exception;
+	
+	public List<String> getAttach(Integer bno)throws Exception;
 
 }

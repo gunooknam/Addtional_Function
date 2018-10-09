@@ -1,5 +1,6 @@
 package com.kwce.domain;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class BoardVO {
@@ -9,8 +10,17 @@ public class BoardVO {
 	 private String writer;
 	 private Date regdate;
 	 private int viewcnt;
-	 
-	 public Integer getBno() {
+	 private String[] files;
+	
+	 public String[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+
+	public Integer getBno() {
 		return bno;
 	 }
 	 
@@ -56,11 +66,10 @@ public class BoardVO {
 	 public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	 }
-	 
-	 @Override
-		public String toString() {
-			return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-					+ regdate + ", viewcnt=" + viewcnt + "]";
-		}
-	 
+
+	@Override
+	public String toString() {
+		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
+				+ regdate + ", viewcnt=" + viewcnt + ", files=" + Arrays.toString(files) + "]";
+	}
 }

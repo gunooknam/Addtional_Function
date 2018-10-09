@@ -162,6 +162,26 @@
 		    <version>1.16</version>
 		</dependency>
 		
+		
+		<dependency> <!-- 리턴시 바인딩 문제 생길수 있는데 이거 써줘야 함  -->
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.4</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>4.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>

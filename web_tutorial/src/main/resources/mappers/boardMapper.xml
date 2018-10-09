@@ -3,16 +3,37 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kwce.mapper.BoardMapper">
+
+
+	<delete id="deleteAttach">
+	delete from tbl_attach where bno =#{bno}
+	</delete>
+
+
+	<insert id="replaceAttach">
+	insert into tbl_attach(fullname, bno) values(#{fullName},#{bno})
+	</insert>
+
+
+	<select id="getAttach" resultType="string">
+	select fullname from tbl_attach where bno = #{bno} order by regdate
+	</select>
+	
+
+	<insert id="addAttach">
+	insert into tbl_attach(fullname, bno) values (#{fullName}, LAST_INSERT_ID())
+	</insert>
+
 	<insert id="create">
 	INSERT 
 	  INTO tbl_board
-		 ( title,
+		  (title,
 		   content,
 		   writer )
 	VALUES
-		 ( #{title},
+		  (#{title},
 		   #{content},
-		   #{writer} )
+		   #{writer})
 	</insert>
 
 	<select id="read" resultType="com.kwce.domain.BoardVO">
@@ -40,7 +61,6 @@
 	WHERE bno = #{bno}
 	</delete>
 	
-
 	<select id="listAll" resultType="com.kwce.domain.BoardVO">
 	<![CDATA[
 	SELECT
@@ -56,5 +76,5 @@
 	          regdate DESC
 	]]>
 	</select>
-	
+		
 </mapper>
