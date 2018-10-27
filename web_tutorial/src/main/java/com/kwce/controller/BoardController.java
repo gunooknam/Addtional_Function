@@ -22,7 +22,7 @@ public class BoardController {
 	@Autowired 
 	private BoardService service;
 	
-/*	@RequestMapping(value= "/list",method = RequestMethod.GET)
+	/*@RequestMapping(value= "/list",method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		logger.info("list page get....");
 		model.addAttribute("list",service.listAll());

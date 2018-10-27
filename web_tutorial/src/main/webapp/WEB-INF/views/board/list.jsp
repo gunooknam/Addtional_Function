@@ -41,7 +41,7 @@
 				</table>
 					<select name="searchType">
 						<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
+							<c:out value="${cri.searchType eq null?'selected':''}"/>>
 							---</option>
 						<option value="t"
 							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
