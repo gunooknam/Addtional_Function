@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.Criteria;
+import com.kwce.domain.PageMaker;
 import com.kwce.domain.SearchCriteria;
 import com.kwce.service.BoardService;
 
@@ -21,7 +23,6 @@ public class BoardController {
 	
 	@Autowired 
 	private BoardService service;
-	
 	/*@RequestMapping(value= "/list",method = RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		logger.info("list page get....");
@@ -77,11 +78,36 @@ public class BoardController {
 		return "redirect:/board/list"; 
 	}
 	
-	@RequestMapping(value="/list",method=RequestMethod.GET)
+	
+/*	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String listSearch(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception {
 		logger.info("search page get.....");
 		logger.info(cri.toString());
 		model.addAttribute("list",service.listSearch(cri));
+		return "board/list";
+	}*/
+// ---- 페이징 전의 list
+
+	// 원하는 것 
+	// startPage 1 , endPage 10, next는 true, prev는 false
+	// startPage 10 , endPage 13, next는 false, prev는 true
+	// 이런식으로 페이지 링크를 등록할 예정 
+	
+	
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	public String listSearch(@ModelAttribute("cri") SearchCriteria cri, Model model)throws Exception {
+		
+		logger.info("Paging & search page get.....");
+		logger.info(cri.toString());
+		
+		model.addAttribute("list",service.listSearch(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
 		return "board/list";
 	}
 	

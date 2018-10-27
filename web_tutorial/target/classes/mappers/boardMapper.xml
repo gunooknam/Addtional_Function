@@ -41,6 +41,7 @@
   <include refid="search"></include>
 <![CDATA[    
   order by bno desc
+  limit #{pageStart}, #{perPageNum}
 ]]>  
 </select>
 	
@@ -99,5 +100,24 @@
 	          regdate DESC
 	]]>
 	</select>
+	
+	<select id="listPageCriteria" resultType="com.kwce.domain.BoardVO">
+	SELECT 
+		bno, title, content, writer, regdate, viewcnt
+	FROM
+		tbl_board
+	WHERE bno &gt; 0
+	order by bno desc, regdate desc
+	limit #{pageStart}, #{perPageNum} <!-- 페이지 개수도 처리할 것임 getter 메소드로 가져온다.  -->
+	</select> 
+		
+	<select id="countPaging" resultType="int" >
+	SELECT 
+		count(bno)
+	FROM
+		tbl_board
+	WHERE
+		bno &gt; 0	
+	</select>	
 	
 </mapper>

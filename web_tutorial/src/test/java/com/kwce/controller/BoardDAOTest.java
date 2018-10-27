@@ -30,7 +30,7 @@ public class BoardDAOTest {
 		dao.create(board);
 	}
 	
-	@Test @Ignore
+	@Test 
 	public void testRead() throws Exception {
 		logger.info(dao.read(1).toString());
 	}
@@ -49,7 +49,7 @@ public class BoardDAOTest {
 		dao.delete(1);
 	}
 	
-	@Before
+	@Before  @Ignore
 	public void testTenCreate() throws Exception {
 		BoardVO board = new BoardVO();
 		for(int i=0; i<10; i++) {
@@ -60,7 +60,7 @@ public class BoardDAOTest {
 		}
 	}
 	
-	@Test 
+	@Test @Ignore
 	public void testListAll() throws Exception{
 		List<BoardVO> list = dao.listAll();
 		for (BoardVO boardVO : list) { //향상된 for문

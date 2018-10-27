@@ -4,8 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kwce.dao.BoardDAO;
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.Criteria;
 import com.kwce.domain.SearchCriteria;
 
+/**
+ * @author d1444
+ *
+ */
+/**
+ * @author d1444
+ *
+ */
 @Service
 public class BoardServiceImpl implements BoardService{
 
@@ -41,6 +50,19 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listSearch(cri);
+	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listCriteria(cri);
+	}
+
+	
+	@Override
+	public int listCount() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countPaging();
 	}
 
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.kwce.domain.BoardVO;
+import com.kwce.domain.Criteria;
 import com.kwce.domain.SearchCriteria;
 
 @Repository
@@ -40,4 +41,28 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return session.selectList(namespace + ".listSearch", cri);
 	}
+	
+	/*@Override
+	public List<BoardVO> listPage(int page, int pageNum) throws Exception {
+		// TODO Auto-generated method stub
+		// 일단 대기
+		if(page <= 0)
+			page = 1;
+		
+		page = (page - 1)*10;
+		
+		return session.selectList(namespace+".listPage", page);
+	}*/
+	
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return session.selectList(namespace+".listPageCriteria", cri);
+	}
+	
+	@Override
+	public int countPaging() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+ ".countPaging");
+	}
+
 }

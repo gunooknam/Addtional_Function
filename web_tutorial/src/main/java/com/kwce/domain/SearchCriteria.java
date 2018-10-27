@@ -1,6 +1,6 @@
 package com.kwce.domain;
 
-public class SearchCriteria {
+public class SearchCriteria extends Criteria{
 	private String searchType;
 	private String keyword;
 	public String getSearchType() {

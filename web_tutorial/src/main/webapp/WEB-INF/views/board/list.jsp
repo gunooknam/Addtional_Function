@@ -14,6 +14,7 @@
 		
 			<div class="panel-heading">
 				Board List Page
+				
 				<button id='regBtn' type="button" onclick="location.href='/board/register'"  class="btn btn-xs pull-right">Register
 					New Board</button>
 			</div><!-- /.panel-heading -->
@@ -39,31 +40,65 @@
 		 				</tr>
 	 				</c:forEach>	
 				</table>
-					<select name="searchType">
-						<option value="n"
-							<c:out value="${cri.searchType eq null?'selected':''}"/>>
-							---</option>
-						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							Title</option>
-						<option value="c"
-							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							Content</option>
-						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							Writer</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
-					</select> <input type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword }'>
-					<button id='searchBtn'>Search</button>	
+				
+				   
+					<div>
+						<select name="searchType">
+							<option value="n"
+								<c:out value="${cri.searchType eq null?'selected':''}"/>>
+								---</option>
+							<option value="t"
+								<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+								Title</option>
+							<option value="c"
+								<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
+								Content</option>
+							<option value="w"
+								<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
+								Writer</option>
+							<option value="tc"
+								<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+								Title OR Content</option>
+							<option value="cw"
+								<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
+								Content OR Writer</option>
+							<option value="tcw"
+								<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
+								Title OR Content OR Writer</option>
+						</select> <input type="text" name='keyword' id="keywordInput"
+							value='${cri.keyword }'>
+						<button id='searchBtn'>Search</button>	
+					</div>
+					
+					
+					
+					
+					
+					
+					<div class='pull-right'>
+						<ul class="pagination">
+							<c:if test="${pageMaker.prev}">
+								<li class="pagenate_button previous"><a href="list?page=${pageMaker.startPage - 1}">Prev</a>
+								</li>
+							</c:if>
+							
+							<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+							
+							<li
+								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+								<a href="list?page=${num}">${num}</a>
+							</li>								
+							
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next}">
+								<li class="pagenate_button next"><a href="list?page=${pageMaker.endPage + 1}">Next</a>
+								</li>
+							</c:if>
+							
+						</ul> 
+					</div> 
+					
 			</div> <!--  end panel-body -->
 		</div><!-- end panel -->
 	</div><!-- /.col-lg-12 -->
