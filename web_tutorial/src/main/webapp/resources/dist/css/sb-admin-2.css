@@ -292,7 +292,6 @@ table.dataTable thead .sorting:after {
   left: 50%;
   width: 3px;
   margin-left: -1.5px;
-  background-color: #eeeeee;
 }
 .timeline > li {
   position: relative;

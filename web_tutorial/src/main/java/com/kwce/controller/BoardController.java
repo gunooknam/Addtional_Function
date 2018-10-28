@@ -47,34 +47,78 @@ public class BoardController {
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(@RequestParam("bno") int bno,
-					 Model model)throws Exception{
+					  @ModelAttribute("cri") SearchCriteria cri, 
+					  Model model)
+		throws Exception{
 		logger.info("read page get....");
 		model.addAttribute(service.read(bno)); 
 		return "board/read";
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String modifyGET(@RequestParam("bno") int bno, Model model)throws Exception{
+	public String modifyGET(@RequestParam("bno") int bno,
+			@ModelAttribute("cri") SearchCriteria cri,
+			Model model)throws Exception{
+	
 		logger.info("modify page get....");
+		logger.info(cri.getKeyword());
+		logger.info(cri.getSearchType());
+		logger.info("확인"+cri.getPage());
+		logger.info("확인"+cri.getPerPageNum());
+		
+		
 		model.addAttribute(service.read(bno)); 
 		return "board/modify";
 	}
 	
+	
+	
+/*	@RequestMapping(value = "/modifyPage", method= RequestMethod.POST)
+	public String modifyPOST(BoardVO board,Criteria cri,RedirectAttributes rttr) throws Exception {
+		logger.info("mod post..........");
+		service.modify(board);
+		rttr.addAttribute("page",cri.getPage());
+		rttr.addAttribute("perPageNum",cri.getPerPageNum());
+		rttr.addFlashAttribute("msg","SUCCESS");
+		return "redirect:/board/listPage"; // �����̷�Ʈ�� �Ѵ�.
+	}*/
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception{
+	public String modifyPOST(BoardVO board, 
+			SearchCriteria  cri,
+			RedirectAttributes rttr) throws Exception{
+		
+		
 		logger.info("modify page post......");	
 		logger.info(board.toString());
+		logger.info(cri.toString());
 		service.modify(board);
+		
+//		rttr.addAttribute("page",cri.getPage());
+//		rttr.addAttribute("perPageNum",cri.getPerPageNum());
+//		rttr.addAttribute("searchType",cri.getSearchType());
+//		rttr.addAttribute("keyword",cri.getKeyword());
+		
 		rttr.addFlashAttribute("msg","SUCCESS");
+		
+		logger.info(rttr.toString());
 		return "redirect:/board/list";
 	}
 	
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public String remove(@RequestParam("bno") int bno,
+			SearchCriteria cri,
 			RedirectAttributes rttr) throws Exception{
 		service.remove(bno);
 		logger.info("remove page post......");	
+		
+		rttr.addAttribute("page",cri.getPage());
+		rttr.addAttribute("perPageNum",cri.getPerPageNum());
+		rttr.addAttribute("searchType",cri.getSearchType());
+		rttr.addAttribute("keyword",cri.getKeyword());
+		
 		rttr.addFlashAttribute("msg","SUCCESS");
+		
 		return "redirect:/board/list"; 
 	}
 	
@@ -104,7 +148,7 @@ public class BoardController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCount());
+		pageMaker.setTotalCount(service.listSearchCount(cri));
 		
 		model.addAttribute("pageMaker", pageMaker);
 		

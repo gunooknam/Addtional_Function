@@ -23,4 +23,6 @@ public interface BoardService {
 	public List<BoardVO> listCriteria(Criteria cri)throws Exception;
 	
 	public int listCount()throws Exception;
+	
+	public int listSearchCount(SearchCriteria cri) throws Exception;
 }

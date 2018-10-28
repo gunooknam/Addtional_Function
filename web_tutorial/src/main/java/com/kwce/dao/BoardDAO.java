@@ -17,10 +17,12 @@ public interface BoardDAO {
 	
 	public List<BoardVO> listSearch(SearchCriteria cri) throws Exception;
 	
+	public int listSearchCount(SearchCriteria cri)throws Exception;
+	
 	// public List<BoardVO> listPage(int page, int pageNum)throws Exception;
 	// 단지 이것만 쓰기에는 정보가 부족하다.... 
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	
 	public int countPaging()throws Exception;
-	
+
 }

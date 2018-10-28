@@ -64,5 +64,10 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+ ".countPaging");
 	}
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace + ".listSearchCount", cri);
+	}
 
 }

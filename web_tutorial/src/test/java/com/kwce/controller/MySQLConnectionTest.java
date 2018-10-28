@@ -8,6 +8,7 @@ public class MySQLConnectionTest {
 	private static final String URL = "jdbc:mysql://127.0.0.1:3306/web_tutorial?serverTimezone=UTC&useSSL=false";
 	private static final String USER ="root";
 	private static final String PW ="123456"; // Enter your password
+	
 	@Test // add build path 
 	public void testConnection() throws Exception {
 		

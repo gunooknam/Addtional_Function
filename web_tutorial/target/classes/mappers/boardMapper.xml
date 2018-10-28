@@ -45,8 +45,6 @@
 ]]>  
 </select>
 	
-
-
 	<insert id="create">
 	INSERT 
 	  INTO tbl_board
@@ -120,4 +118,14 @@
 		bno &gt; 0	
 	</select>	
 	
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(bno) 
+		  from tbl_board 
+		  where bno > 0 
+		]]>
+	<!-- 바로 이쪽 부분이 조건문에 따라서 추가로 붙는다. -->
+  	<include refid="search"></include>
+	</select> 
+
 </mapper>

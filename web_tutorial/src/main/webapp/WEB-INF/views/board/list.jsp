@@ -31,8 +31,11 @@
 					</thead>
 					<c:forEach var="boardVO" items="${list}"> 
 		 				<tr>
+		 						
 		 					<td>${boardVO.bno}</td>
-		 					<td><a href='/board/read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
+		 					<td><a
+									href='/board/read${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}'>
+										${boardVO.title} </a></td>
 		 					<td>${boardVO.writer}</td>
 		 					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 		 					 	value="${boardVO.regdate}" /></td>
@@ -69,30 +72,26 @@
 							value='${cri.keyword }'>
 						<button id='searchBtn'>Search</button>	
 					</div>
-					
-					
-					
-					
-					
-					
+
+	
 					<div class='pull-right'>
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
-								<li class="pagenate_button previous"><a href="list?page=${pageMaker.startPage - 1}">Prev</a>
+								<li class="pagenate_button previous"><a href="list${pageMaker.makeSearch(pageMaker.startPage-1)}">Prev</a>
 								</li>
 							</c:if>
 							
 							<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 							
 							<li
-								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-								<a href="list?page=${num}">${num}</a>
+								<c:out value="${pageMaker.cri.page == num?'class =active':''}"/>>
+								<a href="list${pageMaker.makeSearch(num)}">${num}</a>
 							</li>								
 							
 							</c:forEach>
 							
 							<c:if test="${pageMaker.next}">
-								<li class="pagenate_button next"><a href="list?page=${pageMaker.endPage + 1}">Next</a>
+								<li class="pagenate_button next"><a href="list${pageMaker.makeSearch(pageMaker.endPage+1)}">Next</a>
 								</li>
 							</c:if>
 							
@@ -104,27 +103,39 @@
 	</div><!-- /.col-lg-12 -->
 </div><!-- /.row -->
 
+
+<script>
+	var result = '${msg}';
+
+	if (result == 'SUCCESS') {
+		alert("처리가 완료되었습니다.");
+	}
+</script>
+
 <script>
 
-	$(document).ready(
-			function() {
-			 	var result = '${msg}';
-		 		var Query="?";
-				if(result == 'SUCCESS'){
-				   alert("처리가 완료되었습니다.");
-				}
-				
-				$('#searchBtn').on(
-						"click",
-						function(event) {
-							self.location = "list"
-									+ Query
-									+ "&searchType="
-									+ $("select option:selected").val()
-									+ "&keyword=" + $('#keywordInput').val();
-				});
-	
-	});
+$(document).ready(
+		function() {
+
+			$('#searchBtn').on(
+					"click",
+					function(event) {
+
+						self.location = "list"
+								+ '${pageMaker.makeQuery(1)}'
+								+ "&searchType="
+								+ $("select option:selected").val()
+								+ "&keyword=" + $('#keywordInput').val();
+
+					});
+
+			$('#newBtn').on("click", function(evt) {
+
+				self.location = "register";
+
+			});
+
+		});
 	
  	</script>
 <%@include file="../include/footer.jsp"%>

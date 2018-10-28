@@ -16,6 +16,12 @@
       <div class="panel-body">
 
 		 <form role="form" method="post" action="/board/modify" >
+		 
+	 	 <input type="hidden" name="page" value="${cri.page}">
+		 <input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+		 <input type="hidden" name="searchType" value="${cri.searchType}">
+		 <input type="hidden" name="keyword" value="${cri.keyword}">	
+	
           <div class="form-group">
           <label>Bno</label> <input class="form-control" name='bno'
             value="${boardVO.bno }" readonly="readonly"/>
@@ -34,8 +40,9 @@
             value="${boardVO.writer }" readonly="readonly">
         </div>
 
-		<button id="ModiBtn" class="btn btn-default">Modify</button>
-		<button id="ListBtn" class="btn btn-default">List</button>
+		<button  id="ModiBtn" class="btn btn-default">Modify</button>
+		<button  id="ListBtn" class="btn btn-default">List</button>
+		
 		</form>
       </div>
       <!--  end panel-body -->
@@ -48,18 +55,27 @@
 <!-- /.row -->
 <script>
 $(document).ready(function(){
-	 $("#ListBtn").on("click",function(){
-		var formobj=$("form[role='form']");
-		formobj.attr("action","/board/list");
+	
+	
+	 $("#ListBtn").on("click",function(){	 
+		 
+	    var formobj=$("form[role='form']");
+		formobj.attr("action","/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+				+ "&searchType=${cri.searchType}&keyword=${cri.keyword}");
 		formobj.attr("method","get");
-		formobj.submit();
+		formobj.submit(); 
+		/* self.location = "/board/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+						+ "&searchType=${cri.searchType}&keyword=${cri.keyword}"; */
 	 }); 
+	 
 	 $("#ModiBtn").on("click",function(){
+		 
 		if($("input[name=title]").val()==""){
 			alert("제목을 입력하세요!");
 			$("input[name='title']").focus();
 			return false;
 		}
+		
 		if($("input[name=content]").val()==""){
 			alert("내용을 입력하세요!");
 			$("input[name='content']").focus();
