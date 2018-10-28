@@ -2,6 +2,9 @@ package com.kwce.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.kwce.dao.BoardDAO;
 import com.kwce.domain.BoardVO;
 import com.kwce.domain.Criteria;
@@ -26,8 +29,10 @@ public class BoardServiceImpl implements BoardService{
 		dao.create(board);
 	}
 
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
+		dao.updateViewCnt(bno);
 		return dao.read(bno);
 	}
 

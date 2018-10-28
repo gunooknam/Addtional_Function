@@ -1,6 +1,8 @@
 package com.kwce.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,22 @@ public class BoardDAOImpl implements BoardDAO{
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace + ".listSearchCount", cri);
+	}
+	@Override
+	public void updateReplyCnt(Integer bno, int amount) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> paramMap= new HashMap<String, Object>();
+		
+		paramMap.put("bno", bno);
+		paramMap.put("amount", amount);
+		
+		session.update(namespace+".updateReplyCnt", paramMap);
+		
+	}
+	@Override
+	public void updateViewCnt(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace+".updateViewCnt",bno);
 	}
 
 }

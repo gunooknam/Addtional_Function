@@ -24,5 +24,9 @@ public interface BoardDAO {
 	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 	
 	public int countPaging()throws Exception;
+	
+	public void updateReplyCnt(Integer bno, int amount) throws Exception;
+	
+	public void updateViewCnt(Integer bno) throws Exception;
 
 }
